@@ -125,6 +125,21 @@ echo "" >> CLAUDE.md
 curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md >> CLAUDE.md
 ```
 
+**Option C: Always-on via global CLAUDE.md**
+
+A plugin skill only runs when Claude decides it's relevant. To make `karpathy-guidelines`
+apply in *every* session, add a short directive to your global `~/.claude/CLAUDE.md`:
+
+```bash
+./scripts/install.sh     # add the always-on directive (idempotent)
+./scripts/update.sh      # refresh the directive to the current version
+./scripts/uninstall.sh   # remove it
+```
+
+The scripts edit only a marker-delimited block, so they never touch the rest of your
+CLAUDE.md and are safe to re-run. Honors `CLAUDE_CONFIG_DIR` (falls back to `~/.claude`).
+Use alongside Option A — the plugin provides the skill, this makes it always-on.
+
 ## Using with Cursor
 
 This repository includes a committed Cursor project rule ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)) so the same guidelines apply when you open the project in Cursor. See **[CURSOR.md](CURSOR.md)** for setup, using the rule in other projects, and how this relates to Claude Code.
