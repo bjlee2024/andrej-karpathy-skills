@@ -140,6 +140,12 @@ The scripts edit only a marker-delimited block, so they never touch the rest of 
 CLAUDE.md and are safe to re-run. Honors `CLAUDE_CONFIG_DIR` (falls back to `~/.claude`).
 Use alongside Option A — the plugin provides the skill, this makes it always-on.
 
+**Automatic (no manual step):** when installed as a plugin (Option A), a bundled
+`SessionStart` hook (`hooks/hooks.json`) runs `install.sh` at the start of every session,
+so the always-on directive is kept in sync automatically after install/update. The hook is
+idempotent and silent on no-op. To opt out, disable the plugin's hooks or remove the block
+with `./scripts/uninstall.sh`.
+
 ## Using with Cursor
 
 This repository includes a committed Cursor project rule ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)) so the same guidelines apply when you open the project in Cursor. See **[CURSOR.md](CURSOR.md)** for setup, using the rule in other projects, and how this relates to Claude Code.
